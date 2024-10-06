@@ -29,18 +29,18 @@ void GLCD_CmdWrite(uint8_t cmd)
 	DATA = cmd;
 	CONTROL &= ~RS;
 	CONTROL |= EN;
-	__delay_ms(1);
+	__delay_us(500);
 	CONTROL &= ~EN;
-	__delay_ms(1);
+	__delay_us(500);
 }
 
 void GLCD_DataWrite(uint8_t dat)
 {
 	DATA = dat;
 	CONTROL |= RS | EN;
-	__delay_ms(1);
+	__delay_us(500);
 	CONTROL &= ~EN;
-	__delay_ms(1);
+	__delay_us(500);
 }
 
 void GLCD_Init(void)
@@ -50,11 +50,11 @@ void GLCD_Init(void)
 	GLCD_CmdWrite(GLCD_DISPLAY_ON);
 	GLCD_SelectPage1();
 	GLCD_CmdWrite(GLCD_DISPLAY_ON);
-	__delay_ms(10);
+	__delay_ms(1);
 
 	GLCD_SelectPage0();
 	GLCD_CmdWrite(GLCD_SETZ_ADDRESS);
 	GLCD_SelectPage1();
 	GLCD_CmdWrite(GLCD_SETZ_ADDRESS);
-	__delay_ms(10);
+	__delay_us(200);
 }
